@@ -25,3 +25,17 @@ class YollanmaAPIView(APIView):
         if data.is_valid():
             data.save()
             return Response(data.data)
+
+class BemorApiView(APIView):
+    def get(self, request, pk):
+        bemor = Bemor.objects.get(id=pk)
+        serializer = BemorSerializer(bemor)
+        return Response(serializer.data)
+    def update(self, request, pk):
+        bemor = Bemor.objects.get(id=pk)
+        data = request.data
+        serializer = BemorSerializer(bemor, data=data)
+        if serializer.is_valid():
+            data.save()
+            return Response({"success": "True"})
+        return Response(serializer.errors)

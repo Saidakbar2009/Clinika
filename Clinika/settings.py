@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'xonalar',
     'tolovlar',
 
-    'rest_framework'
+    'rest_framework',
+    'drf_yasg',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ASGI_APPLICATION = "Clinika.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": 'channels.layers.InMemoryChannelLayer'
+    }
+}
